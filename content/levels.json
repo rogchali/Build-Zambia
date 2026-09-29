@@ -1,0 +1,11 @@
+{
+  "_note": "A player's level is the highest entry whose rules are all met. Master Builder's bonus threshold is a starting proposal — tune freely.",
+  "levels": [
+    { "n": 0, "name": { "en": "Beginner" },           "minMissions": 0 },
+    { "n": 1, "name": { "en": "Village Builder" },    "minMissions": 1 },
+    { "n": 2, "name": { "en": "District Builder" },   "minMissions": 3 },
+    { "n": 3, "name": { "en": "Provincial Builder" }, "minMissions": 5 },
+    { "n": 4, "name": { "en": "Zambia Builder" },     "minMissions": 8 },
+    { "n": 5, "name": { "en": "Master Builder" },     "minMissions": 8, "minBonusPoints": 5000 }
+  ]
+}

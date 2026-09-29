@@ -1,0 +1,9 @@
+Fonts bundled with Build Zambia (Latin subset, WOFF2), downloaded from Google Fonts on 2026-09-29.
+
+baloo2-latin.woff2      Baloo 2 (variable weight)       Copyright Ek Type
+atkinson-400.woff2      Atkinson Hyperlegible Regular   Copyright Braille Institute of America
+atkinson-700.woff2      Atkinson Hyperlegible Bold      Copyright Braille Institute of America
+
+Both are licensed under the SIL Open Font License, Version 1.1:
+https://openfontlicense.org/open-font-license-official-text/
+Sources: https://fonts.google.com/specimen/Baloo+2 and https://fonts.google.com/specimen/Atkinson+Hyperlegible

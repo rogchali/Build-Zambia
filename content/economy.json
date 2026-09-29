@@ -1,0 +1,22 @@
+{
+  "_note": "All earning values for balancing. Build Coins are virtual, have no cash value, and can never be bought with real money.",
+  "startingCoins": 500,
+  "coins": {
+    "smallTask": 100,
+    "correctAnswer": 50,
+    "challenge": 200,
+    "finishMission": 1000,
+    "perfectMission": 250
+  },
+  "points": {
+    "missionPoints": 1000,
+    "perfectMissionBonus": 100,
+    "dailyQuiz": 50,
+    "weeklyChallengeMax": 500
+  },
+  "replay": {
+    "_note": "A replayed (already completed) mission earns this fraction of coins and no Mission Points.",
+    "coinFactor": 0.25,
+    "missionPoints": 0
+  }
+}

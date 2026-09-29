@@ -1,0 +1,4 @@
+{
+  "_note": "Bump contentVersion whenever mission/economy/shop/level content changes. Every ledger event records the version it was earned under.",
+  "contentVersion": 1
+}

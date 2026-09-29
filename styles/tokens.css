@@ -1,0 +1,36 @@
+/* Self-hosted fonts (Latin subset, SIL Open Font License) so text renders offline. */
+@font-face { font-family: "Baloo 2"; src: url("../fonts/baloo2-latin.woff2") format("woff2"); font-weight: 400 800; font-display: swap; }
+@font-face { font-family: "Atkinson Hyperlegible"; src: url("../fonts/atkinson-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Atkinson Hyperlegible"; src: url("../fonts/atkinson-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
+/* Design tokens — from the approved mockup. */
+:root {
+  --ink: #1B1A17;
+  --cream: #FFF4D6;
+  --white: #FFFFFF;
+  --sky: #62C3F0;
+  --sky-light: #8FD6F5;
+  --maize: #FFD23F;
+  --orange: #FF9F1C;
+  --green: #3FAE4A;
+  --green-light: #9BD86B;
+  --red: #E5383B;
+
+  /* One colour per mission (mockup map). */
+  --m-maize: #FFD23F;
+  --m-power: #FF9F1C;
+  --m-tourism: #8FD6F5;
+  --m-copper: #F08A4B;
+  --m-soya: #9BD86B;
+  --m-beef: #FF8A8A;
+  --m-sugar: #C9A7F5;
+  --m-wheat: #F2C166;
+
+  --outline: 3px solid var(--ink);
+  --shadow: 4px 4px 0 var(--ink);
+  --shadow-sm: 3px 3px 0 var(--ink);
+  --radius: 18px;
+
+  --font-display: "Baloo 2", "Trebuchet MS", sans-serif;
+  --font-body: "Atkinson Hyperlegible", Verdana, sans-serif;
+}

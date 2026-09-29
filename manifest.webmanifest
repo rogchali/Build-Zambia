@@ -1,0 +1,14 @@
+{
+  "name": "Build Zambia",
+  "short_name": "Build Zambia",
+  "description": "Eight National Development Missions. One Zambia.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF4D6",
+  "theme_color": "#FFD23F",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

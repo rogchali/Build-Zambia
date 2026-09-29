@@ -1,0 +1,9 @@
+{
+  "_note": "English only (decision 2026-09-29). Matched case-insensitively as SUBSTRINGS after normalising look-alike characters (0->o, 1->i, 3->e, 4->a, 5->s, 7->t, @->a, $->s), so only list words that don't hide inside innocent names. Deliberately left out because they do: dick (Dickson), cock (peacock), kill (skills), rape (grape), anal (canal), arse (parse), sex (Essex). Keep entries lowercase.",
+  "words": [
+    "fuck", "shit", "bitch", "bastard", "cunt", "pussy", "penis", "vagina",
+    "whore", "slut", "porn", "nude", "naked", "boob", "tits",
+    "nigger", "nigga", "faggot", "retard", "wanker", "twat", "asshole",
+    "suicide", "nazi", "hitler", "cocaine", "idiot", "stupid", "moron"
+  ]
+}

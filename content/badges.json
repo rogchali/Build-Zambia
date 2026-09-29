@@ -1,0 +1,13 @@
+{
+  "badges": [
+    { "id": "maize",   "missionId": "maize",   "name": { "en": "Maize Builder" } },
+    { "id": "power",   "missionId": "power",   "name": { "en": "Power Builder" } },
+    { "id": "tourism", "missionId": "tourism", "name": { "en": "Tourism Builder" } },
+    { "id": "copper",  "missionId": "copper",  "name": { "en": "Copper Builder" } },
+    { "id": "soya",    "missionId": "soya",    "name": { "en": "Soya Builder" } },
+    { "id": "beef",    "missionId": "beef",    "name": { "en": "Beef Builder" } },
+    { "id": "sugar",   "missionId": "sugar",   "name": { "en": "Sugar Builder" } },
+    { "id": "wheat",   "missionId": "wheat",   "name": { "en": "Wheat Builder" } },
+    { "id": "i-built-zambia", "special": "allMissions", "name": { "en": "I BUILT ZAMBIA" } }
+  ]
+}

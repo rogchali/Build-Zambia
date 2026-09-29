@@ -1,0 +1,13 @@
+{
+  "_note": "Mission roster in play order. Missions unlock in sequence: each needs the one before it completed. Step content lives in missions/<id>.json (Maize in Phase 1, the rest in Phase 2).",
+  "missions": [
+    { "id": "maize",   "order": 1, "colour": "#FFD23F", "icon": "maize",   "name": { "en": "Maize" },   "personalGoal": { "amount": 500, "unit": { "en": "virtual tonnes" } } },
+    { "id": "power",   "order": 2, "colour": "#FF9F1C", "icon": "power",   "name": { "en": "Power" },   "personalGoal": null },
+    { "id": "tourism", "order": 3, "colour": "#8FD6F5", "icon": "tourism", "name": { "en": "Tourism" }, "personalGoal": null },
+    { "id": "copper",  "order": 4, "colour": "#F08A4B", "icon": "copper",  "name": { "en": "Copper" },  "personalGoal": null },
+    { "id": "soya",    "order": 5, "colour": "#9BD86B", "icon": "soya",    "name": { "en": "Soya" },    "personalGoal": null },
+    { "id": "beef",    "order": 6, "colour": "#FF8A8A", "icon": "beef",    "name": { "en": "Beef" },    "personalGoal": { "amount": null, "unit": { "en": "virtual cattle exported" } } },
+    { "id": "sugar",   "order": 7, "colour": "#C9A7F5", "icon": "sugar",   "name": { "en": "Sugar" },   "personalGoal": null },
+    { "id": "wheat",   "order": 8, "colour": "#F2C166", "icon": "wheat",   "name": { "en": "Wheat" },   "personalGoal": null }
+  ]
+}

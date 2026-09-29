@@ -1,0 +1,13 @@
+{
+  "_note": "Zambia's national goals. Presented factually. Source fields stay 'Source pending' until an official government/policy document is supplied — never invent a source.",
+  "targets": [
+    { "id": "maize",   "missionId": "maize",   "value": 10000000,   "unit": "tonnes",         "deadlineYear": 2031, "description": { "en": "Produce 10 million tonnes of maize a year." },        "sourceName": null, "sourceUrl": null, "lastVerified": null },
+    { "id": "power",   "missionId": "power",   "value": 10000,      "unit": "megawatts",      "deadlineYear": 2031, "description": { "en": "Generate 10,000 megawatts of electricity." },        "sourceName": null, "sourceUrl": null, "lastVerified": null },
+    { "id": "tourism", "missionId": "tourism", "value": 5000000,    "unit": "visitors",       "deadlineYear": 2031, "description": { "en": "Welcome 5 million visitors a year." },                "sourceName": null, "sourceUrl": null, "lastVerified": null },
+    { "id": "copper",  "missionId": "copper",  "value": 3000000,    "unit": "tonnes",         "deadlineYear": 2031, "description": { "en": "Produce 3 million tonnes of copper a year." },        "sourceName": null, "sourceUrl": null, "lastVerified": null },
+    { "id": "soya",    "missionId": "soya",    "value": 3000000,    "unit": "tonnes",         "deadlineYear": 2031, "description": { "en": "Produce 3 million tonnes of soya beans a year." },    "sourceName": null, "sourceUrl": null, "lastVerified": null },
+    { "id": "beef",    "missionId": "beef",    "value": 1000000000, "unit": "US$ of exports", "deadlineYear": 2031, "description": { "en": "Earn US$1 billion a year from beef exports." },      "sourceName": null, "sourceUrl": null, "lastVerified": null },
+    { "id": "sugar",   "missionId": "sugar",   "value": 1000000,    "unit": "tonnes",         "deadlineYear": 2031, "description": { "en": "Produce 1 million tonnes of sugar a year." },         "sourceName": null, "sourceUrl": null, "lastVerified": null },
+    { "id": "wheat",   "missionId": "wheat",   "value": 1000000,    "unit": "tonnes",         "deadlineYear": 2031, "description": { "en": "Produce 1 million tonnes of wheat a year." },         "sourceName": null, "sourceUrl": null, "lastVerified": null }
+  ]
+}

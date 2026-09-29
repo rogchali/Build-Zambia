@@ -1,0 +1,12 @@
+{
+  "_note": "One catalogue. In-mission choices buy from this same list. Every item gives a real gameplay advantage via 'effects'.",
+  "items": [
+    { "id": "better-seed",  "price": 300,  "name": { "en": "Better seed" },         "effects": { "yieldPct": 30 },           "appliesTo": ["maize", "soya", "wheat"] },
+    { "id": "cattle",       "price": 500,  "name": { "en": "Cattle" },              "effects": { "herd": 1 },                "appliesTo": ["beef"] },
+    { "id": "irrigation",   "price": 1200, "name": { "en": "Irrigation" },          "effects": { "droughtProtect": true },   "appliesTo": ["maize", "soya", "sugar", "wheat"] },
+    { "id": "tractor",      "price": 2000, "name": { "en": "Tractor" },             "effects": { "yieldPct": 20 },           "appliesTo": ["maize", "soya", "sugar", "wheat"] },
+    { "id": "lodge",        "price": 3500, "name": { "en": "Lodge" },               "effects": { "visitorsPct": 40 },        "appliesTo": ["tourism"] },
+    { "id": "solar-plant",  "price": 5000, "name": { "en": "Solar plant" },         "effects": { "megawatts": 20 },          "appliesTo": ["power"] },
+    { "id": "factory",      "price": 8000, "name": { "en": "Processing factory" },  "effects": { "valueAddPct": 50 },        "appliesTo": ["copper", "soya", "sugar", "wheat"] }
+  ]
+}

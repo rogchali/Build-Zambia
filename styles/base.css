@@ -1,0 +1,89 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.4;
+}
+#app {
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 18px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: 1.05; margin: 0; }
+p { margin: 0; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 4px solid var(--sky); outline-offset: 2px; }
+
+/* Buttons: >= 48px, big uppercase labels, hard shadow that presses in. */
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 56px; width: 100%; padding: 8px 18px;
+  font-family: var(--font-display); font-weight: 800; font-size: 24px; text-transform: uppercase;
+  border: var(--outline); border-radius: 20px; box-shadow: 0 6px 0 var(--ink);
+  cursor: pointer; transition: transform .08s, box-shadow .08s;
+}
+.btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--ink); }
+.btn-go { background: var(--green); }
+.btn-alt { background: var(--white); }
+.btn[disabled] { opacity: .55; cursor: not-allowed; }
+
+/* Title in coloured letter blocks. */
+.letters { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+.letter {
+  width: 40px; height: 44px; display: flex; align-items: center; justify-content: center;
+  border: var(--outline); border-radius: 8px; box-shadow: var(--shadow-sm);
+  font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1; padding-top: 3px;
+}
+.letter-gap { width: 12px; }
+
+/* Jimmy + speech bubble. */
+.guide { display: flex; align-items: flex-end; gap: 10px; }
+.guide-face { flex-shrink: 0; width: 62px; height: 62px; }
+.guide-face svg { width: 100%; height: 100%; }
+.bubble {
+  flex-grow: 1; background: var(--white); border: var(--outline); border-radius: 18px 18px 18px 4px;
+  padding: 10px 14px; box-shadow: var(--shadow-sm);
+  font-family: var(--font-display); font-weight: 800; font-size: 19px; line-height: 1.2;
+}
+
+/* Top counters (coins / points / badges). */
+.counters { display: flex; gap: 10px; }
+.counter {
+  flex: 1 1 0; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 6px 4px;
+  border: var(--outline); border-radius: 16px; box-shadow: var(--shadow-sm);
+}
+.counter:nth-child(odd) { transform: rotate(-2deg); }
+.counter:nth-child(even) { transform: rotate(1.5deg); }
+.counter svg { width: 26px; height: 26px; }
+.num { font-family: var(--font-display); font-weight: 800; font-size: 26px; line-height: 1; }
+
+/* Labelled numbers — the three kinds never look alike. */
+.stat {
+  display: flex; flex-direction: column; padding: 10px 14px;
+  border: var(--outline); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.stat-label { font-family: var(--font-display); font-weight: 800; font-size: 15px; letter-spacing: .5px; text-transform: uppercase; }
+.stat-value { font-family: var(--font-display); font-weight: 800; font-size: 48px; line-height: .95; padding-top: 4px; }
+.stat-unit { font-weight: 700; font-size: 15px; }
+.stat-source { font-size: 15px; margin-top: 4px; }
+.stat-goal { background: var(--white); }
+.stat-personal { background: var(--maize); }
+.stat-community { background: var(--sky-light); border-style: dashed; }
+.stat-official { background: var(--white); border-color: #3B5BA5; }
+
+.card { background: var(--white); border: var(--outline); border-radius: var(--radius); box-shadow: var(--shadow); padding: 14px; }
+.stack { display: flex; flex-direction: column; gap: 14px; }
+.row2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.muted-note { font-size: 15px; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

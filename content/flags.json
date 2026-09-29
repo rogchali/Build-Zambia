@@ -1,0 +1,4 @@
+{
+  "_note": "REAL_PRIZES stays false in every environment until legal review is complete. While false, no prize screens, rules pages or claim flows are shown.",
+  "REAL_PRIZES": false
+}
