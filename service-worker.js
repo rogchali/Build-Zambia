@@ -1,6 +1,6 @@
 // BUMP CACHE_VERSION ON ANY CHANGE TO THE APP SHELL OR CONTENT.
 // Skipping this leaves players on a stale cached game.
-const CACHE_VERSION = "bz-v1";
+const CACHE_VERSION = "bz-v2";
 
 // Everything the game needs to play fully offline after the first visit.
 const PRECACHE = [
@@ -25,7 +25,15 @@ const PRECACHE = [
   "./src/ui/h.js",
   "./src/ui/icons.js",
   "./src/ui/components.js",
+  "./src/engine/mission.js",
   "./src/screens/welcome.js",
+  "./src/screens/setup.js",
+  "./src/screens/map.js",
+  "./src/screens/intro.js",
+  "./src/screens/play.js",
+  "./src/screens/complete.js",
+  "./src/screens/profile.js",
+  "./src/screens/privacy.js",
   "./content/version.json",
   "./content/targets.json",
   "./content/economy.json",
@@ -36,6 +44,8 @@ const PRECACHE = [
   "./content/flags.json",
   "./content/nickname-blocklist.json",
   "./content/strings/en.json",
+  "./content/profile.json",
+  "./content/missions/maize.json",
 ];
 
 self.addEventListener("install", (e) => {

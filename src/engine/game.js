@@ -49,16 +49,23 @@ export class Game {
     return ev;
   }
 
-  task(missionId, stepId, kind) {
-    return this.apply(R.taskDraft(this.state, this.content, missionId, stepId, kind));
+  task(missionId, stepId, kind, extra) {
+    return this.apply(R.taskDraft(this.state, this.content, missionId, stepId, kind, extra));
   }
-  buy(itemId, missionId, stepId) {
-    return this.apply(R.purchaseDraft(this.state, this.content, itemId, missionId, stepId));
+  buy(itemId, missionId, stepId, extra) {
+    return this.apply(R.purchaseDraft(this.state, this.content, itemId, missionId, stepId, extra));
   }
   complete(missionId, opts) {
     return this.apply(R.completeDraft(this.state, this.content, missionId, opts));
   }
   isUnlocked(missionId) {
     return R.isUnlocked(this.state, missionId, this.content);
+  }
+
+  // Wipes this device's game (Profile -> "Delete my game").
+  async reset() {
+    for (const k of ["player", "ledger", ...this.content.missions.missions.map((m) => "run:" + m.id)]) await this.store.del(k);
+    this.player = null;
+    this.events = [];
   }
 }

@@ -16,6 +16,9 @@ export const ICONS = {
   badge: `<svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14 7 22l5-3 5 3-1.5-8" fill="#E5383B" stroke="#1B1A17" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="6.5" fill="#FF9F1C" stroke="#1B1A17" stroke-width="2.2"/></svg>`,
   back: `<svg ${S.replace('stroke-width="2.4"', 'stroke-width="3"')}><path d="M19 12H5M11 6l-6 6 6 6"/></svg>`,
   lock: `<svg ${S}><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>`,
+  user: `<svg ${S}><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>`,
+  check: `<svg ${S} ><path d="M5 12.5 10 17l9-10"/></svg>`,
+  cross: `<svg ${S}><path d="M6 6l12 12M18 6 6 18"/></svg>`,
 };
 
 // Jimmy — the guide in the orange hard hat.

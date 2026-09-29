@@ -1,7 +1,7 @@
 {
   "_note": "Mission roster in play order. Missions unlock in sequence: each needs the one before it completed. Step content lives in missions/<id>.json (Maize in Phase 1, the rest in Phase 2).",
   "missions": [
-    { "id": "maize",   "order": 1, "colour": "#FFD23F", "icon": "maize",   "name": { "en": "Maize" },   "personalGoal": { "amount": 500, "unit": { "en": "virtual tonnes" } } },
+    { "id": "maize",   "order": 1, "colour": "#FFD23F", "icon": "maize",   "name": { "en": "Maize" },   "personalGoal": { "amount": 500, "unit": { "en": "virtual tonnes" } }, "file": "missions/maize.json" },
     { "id": "power",   "order": 2, "colour": "#FF9F1C", "icon": "power",   "name": { "en": "Power" },   "personalGoal": null },
     { "id": "tourism", "order": 3, "colour": "#8FD6F5", "icon": "tourism", "name": { "en": "Tourism" }, "personalGoal": null },
     { "id": "copper",  "order": 4, "colour": "#F08A4B", "icon": "copper",  "name": { "en": "Copper" },  "personalGoal": null },

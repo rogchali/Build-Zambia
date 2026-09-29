@@ -1,0 +1,114 @@
+{
+  "_note": "Maize mission. Approved wording 2026-09-30. Every step must keep at least one free option (no 'item'). 'best' marks the ideal choice; on a step with 'challenge': true it earns the challenge coins. Yield = baseYield x each chosen option's (1 + yieldPct/100); an option with 'item' uses that shop item's yieldPct.",
+  "id": "maize",
+  "lesson": { "en": "Farming is a sequence of decisions." },
+  "baseYield": 320,
+  "goal": 500,
+  "unit": { "en": "virtual tonnes" },
+  "intro": { "en": "Every farmer makes lots of choices. Good choices mean more maize. Let's farm!" },
+  "steps": [
+    {
+      "id": "prepare",
+      "title": { "en": "Prepare the land" },
+      "prompt": { "en": "Your field is ready. How will you get the soil ready?" },
+      "action": { "en": "PREPARE IT!" },
+      "options": [
+        { "id": "compost", "best": true, "yieldPct": 15, "text": { "en": "Mix in compost and manure" }, "reply": { "en": "Compost feeds the soil. Strong soil, strong maize!" } },
+        { "id": "burn", "yieldPct": 0, "text": { "en": "Burn the old stalks" }, "reply": { "en": "Burning is quick, but it burns away food the soil needs." } },
+        { "id": "rush", "yieldPct": -10, "text": { "en": "Plant straight away" }, "reply": { "en": "Hard, hungry soil gives a smaller harvest." } }
+      ],
+      "quiz": {
+        "question": { "en": "What does compost give the soil?" },
+        "options": [
+          { "text": { "en": "Food for plants" }, "correct": true },
+          { "text": { "en": "Only water" } },
+          { "text": { "en": "Nothing" } }
+        ],
+        "explanation": { "en": "Compost is old plants and manure. It gives the soil food that helps maize grow big." }
+      }
+    },
+    {
+      "id": "seed",
+      "title": { "en": "Choose your seed" },
+      "prompt": { "en": "Seeds are where every harvest begins." },
+      "action": { "en": "PICK IT!" },
+      "options": [
+        { "id": "saved", "yieldPct": 0, "text": { "en": "Old saved seed" }, "note": { "en": "Small harvest" }, "reply": { "en": "Saving coins is smart, but your harvest might be small." } },
+        { "id": "better", "best": true, "item": "better-seed", "text": { "en": "Better seed" }, "note": { "en": "Big harvest" }, "reply": { "en": "Great pick! Good seed means more maize." } },
+        { "id": "dry", "item": "dry-season-seed", "text": { "en": "Dry-season seed" }, "note": { "en": "Grows with little rain" }, "reply": { "en": "Clever! This seed keeps growing when rain is short." } }
+      ]
+    },
+    {
+      "id": "plant",
+      "title": { "en": "Plant" },
+      "prompt": { "en": "When should you plant?" },
+      "action": { "en": "PLANT IT!" },
+      "options": [
+        { "id": "rains", "best": true, "yieldPct": 10, "text": { "en": "When the first good rains come (Nov–Dec)" }, "reply": { "en": "Perfect timing! Wet soil helps seeds grow." } },
+        { "id": "dry", "yieldPct": -20, "text": { "en": "Before any rain falls" }, "reply": { "en": "Seeds in dry soil can't sprout." } },
+        { "id": "late", "yieldPct": -25, "text": { "en": "Late, in February" }, "reply": { "en": "Planting late leaves too little time to grow before the rains end." } }
+      ]
+    },
+    {
+      "id": "protect",
+      "title": { "en": "Protect your crop" },
+      "prompt": { "en": "Oh no! Caterpillars are eating the leaves!" },
+      "action": { "en": "PROTECT IT!" },
+      "challenge": true,
+      "options": [
+        { "id": "scout", "best": true, "yieldPct": 0, "text": { "en": "Check plants every week and remove pests early" }, "reply": { "en": "Well done! Catching pests early saves the crop." } },
+        { "id": "nothing", "yieldPct": -30, "text": { "en": "Do nothing and hope" }, "reply": { "en": "Pests spread fast. Much of the crop was lost." } },
+        { "id": "spray", "yieldPct": -10, "text": { "en": "Spray lots of chemicals every day" }, "reply": { "en": "Too much spray costs money and harms helpful insects." } }
+      ],
+      "quiz": {
+        "question": { "en": "Why check your crop every week?" },
+        "options": [
+          { "text": { "en": "To find problems early" }, "correct": true },
+          { "text": { "en": "To count the leaves" } },
+          { "text": { "en": "There is no reason" } }
+        ],
+        "explanation": { "en": "Small problems are easy to fix. Checking often means you find them before they grow big." }
+      }
+    },
+    {
+      "id": "harvest",
+      "title": { "en": "Harvest" },
+      "prompt": { "en": "Your maize is tall! When will you harvest?" },
+      "action": { "en": "HARVEST IT!" },
+      "options": [
+        { "id": "dry", "best": true, "yieldPct": 0, "text": { "en": "When the cobs are dry and hard" }, "reply": { "en": "Dry cobs keep well. Great harvest!" } },
+        { "id": "wet", "yieldPct": -15, "text": { "en": "Early, while the cobs are still wet" }, "reply": { "en": "Wet maize can rot." } }
+      ]
+    },
+    {
+      "id": "store",
+      "title": { "en": "Store" },
+      "prompt": { "en": "Where will you keep your maize?" },
+      "action": { "en": "STORE IT!" },
+      "options": [
+        { "id": "sealed", "best": true, "yieldPct": 0, "text": { "en": "Sealed bags or a sealed drum" }, "reply": { "en": "No insects or damp can get in. Safe maize!" } },
+        { "id": "pile", "yieldPct": -20, "text": { "en": "An open pile on the floor" }, "reply": { "en": "Weevils, rats and damp spoiled some maize." } }
+      ],
+      "quiz": {
+        "question": { "en": "Why keep maize sealed?" },
+        "options": [
+          { "text": { "en": "To keep insects and damp out" }, "correct": true },
+          { "text": { "en": "To make it heavier" } },
+          { "text": { "en": "To help it grow" } }
+        ],
+        "explanation": { "en": "Insects and damp spoil maize. A sealed bag or drum keeps them out, so none is wasted." }
+      }
+    },
+    {
+      "id": "market",
+      "title": { "en": "Market" },
+      "prompt": { "en": "Time to sell! What's your plan?" },
+      "action": { "en": "SELL IT!" },
+      "options": [
+        { "id": "plan", "best": true, "yieldPct": 0, "text": { "en": "Keep some for food, sell some now, save some to sell later" }, "reply": { "en": "Smart! Prices are often higher later, and your family has food." } },
+        { "id": "all", "yieldPct": 0, "text": { "en": "Sell everything right away" }, "reply": { "en": "Quick coins, but prices are often lowest at harvest time." } },
+        { "id": "keep", "yieldPct": 0, "text": { "en": "Keep it all" }, "reply": { "en": "Food is safe, but you need coins to farm again next year." } }
+      ]
+    }
+  ]
+}

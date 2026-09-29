@@ -84,22 +84,23 @@ export function startDraft(content) {
 }
 
 // kind: "smallTask" | "correctAnswer" | "challenge"
-export function taskDraft(state, content, missionId, stepId, kind) {
+// extra: optional payload fields, e.g. { runId } to tie an award to one play-through.
+export function taskDraft(state, content, missionId, stepId, kind, extra = {}) {
   const base = content.economy.coins[kind];
   if (base == null) return { error: "unknown-task-kind" };
   const coins = isReplay(state, missionId) ? Math.round(base * content.economy.replay.coinFactor) : base;
-  return { type: "task", missionId, stepId, delta: { coins }, payload: { kind } };
+  return { type: "task", missionId, stepId, delta: { coins }, payload: { kind, ...extra } };
 }
 
-export function purchaseDraft(state, content, itemId, missionId = null, stepId = null) {
+export function purchaseDraft(state, content, itemId, missionId = null, stepId = null, extra = {}) {
   const item = content.shop.items.find((i) => i.id === itemId);
   if (!item) return { error: "unknown-item" };
   if (state.coins < item.price) return { error: "not-enough-coins" };
-  return { type: "purchase", itemId, missionId, stepId, delta: { coins: -item.price } };
+  return { type: "purchase", itemId, missionId, stepId, delta: { coins: -item.price }, payload: { ...extra } };
 }
 
 // production: { amount, unit } of VIRTUAL output from this run.
-export function completeDraft(state, content, missionId, { perfect = false, production = null } = {}) {
+export function completeDraft(state, content, missionId, { perfect = false, production = null, runId = null } = {}) {
   const eco = content.economy;
   const replay = isReplay(state, missionId);
   let coins = eco.coins.finishMission + (perfect ? eco.coins.perfectMission : 0);
@@ -115,6 +116,6 @@ export function completeDraft(state, content, missionId, { perfect = false, prod
       coins,
     },
     production: production ? { missionId, amount: production.amount, unit: production.unit } : null,
-    payload: { perfect, replay },
+    payload: { perfect, replay, ...(runId ? { runId } : {}) },
   };
 }

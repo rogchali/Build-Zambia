@@ -102,9 +102,24 @@ if an event claims more.
 - Guide character: **Jimmy** (orange hard hat).
 - Age bands (proposed): Under 10 / 10–12 / 13–15 / 16–17 / 18+.
 
+### Maize mission (Phase 1, wording approved 2026-09-30)
+Content: `content/missions/maize.json`. 7 steps (prepare, seed, plant, protect,
+harvest, store, market), 3 quizzes, Protect is the challenge step. Yield =
+320 base × each choice's %, goal 500 virtual tonnes. Best path 526, dry-season
+seed path 506, all-free path 405. Perfect run earns exactly 2,300 coins.
+- Missing 500 still **completes** the mission (1,000 MP) but isn't perfect;
+  Jimmy invites a replay. Perfect = all quizzes right + best Protect + ≥500.
+- Wrong quiz answer: explanation shown, no retry.
+- `dry-season-seed` (300) added to the shop catalogue (from the mockup).
+- Runs are checkpointed to the store (`run:<missionId>`); every award is
+  tagged with the run's id and checked against the ledger, so resuming after
+  closing the app never pays twice (`src/engine/mission.js`).
+- `loader.js` refuses a mission file with a step lacking a free option, a
+  quiz without exactly one right answer, or a unit not saying "virtual".
+
 ## 5. Phases
 
-0 Foundations (done on `preview`) · 1 Offline prototype (profile, map, full
+0 Foundations (done) · 1 Offline prototype — built on `preview` (profile, map, full
 Maize mission, complete screen, profile) · 2 Other 7 missions, random events,
 shop, all levels, finale, illustrated map · 3a Backend + Data Protection Act
 review · 3b Sync, leaderboards, anti-cheat, community counters · 4 Weekly
@@ -120,7 +135,7 @@ must happen before any player data leaves the device.
 - Branch `preview`; nothing merges to `main` without Rodger's approval. Ask
   before every commit/push.
 - **Bump `CACHE_VERSION` in `service-worker.js` on any shell/content change**
-  (current `bz-v1`), and add any new file to its `PRECACHE` list.
+  (current `bz-v2`), and add any new file to its `PRECACHE` list.
 - Test locally: `powershell -ExecutionPolicy Bypass -File scripts\serve.ps1`
   then open `http://localhost:8765/tests/` (engine tests) and `/` (game) at
   360px width.

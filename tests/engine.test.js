@@ -6,6 +6,7 @@ import * as R from "../src/engine/rules.js";
 import { checkNickname } from "../src/engine/nickname.js";
 import { mulberry32, weightedPick } from "../src/engine/rng.js";
 import { setStrings } from "../src/i18n.js";
+import { MissionRun, computeYield } from "../src/engine/mission.js";
 
 const tests = [];
 const test = (name, fn) => tests.push({ name, fn });
@@ -38,7 +39,15 @@ test("coin values and prices match brief section 8", () => {
   eq(content.economy.startingCoins, 500);
   eq(content.economy.coins, { smallTask: 100, correctAnswer: 50, challenge: 200, finishMission: 1000, perfectMission: 250 });
   const prices = Object.fromEntries(content.shop.items.map((i) => [i.id, i.price]));
-  eq(prices, { "better-seed": 300, cattle: 500, irrigation: 1200, tractor: 2000, lodge: 3500, "solar-plant": 5000, factory: 8000 });
+  eq(prices, { "better-seed": 300, "dry-season-seed": 300, cattle: 500, irrigation: 1200, tractor: 2000, lodge: 3500, "solar-plant": 5000, factory: 8000 });
+});
+test("every file the service worker precaches exists", async () => {
+  const sw = await (await fetch("../service-worker.js")).text();
+  const files = [...sw.matchAll(/"(\.\/[^"]*)"/g)].map((m) => m[1]);
+  ok(files.length > 30, "found " + files.length);
+  const missing = [];
+  for (const f of files) if (!(await fetch("../" + f.slice(2))).ok) missing.push(f);
+  eq(missing, []);
 });
 test("REAL_PRIZES is OFF", () => eq(content.flags.REAL_PRIZES, false));
 
@@ -182,6 +191,91 @@ test("seeded rng is deterministic", () => {
   eq([a(), a(), a()], [b(), b(), b()]);
   const items = [{ id: "x", weight: 0 }, { id: "y", weight: 1 }];
   eq(weightedPick(items, mulberry32(1)).id, "y");
+});
+
+// ---------- Maize mission ----------
+const maize = content.play.maize;
+const BEST = { prepare: "compost", seed: "better", plant: "rains", protect: "scout", harvest: "dry", store: "sealed", market: "plan" };
+const FREE = { ...BEST, seed: "saved" };
+
+// Plays a full run. answers: "right" | "wrong" for every quiz.
+async function playMaize(g, picks, answers = "right") {
+  const run = await new MissionRun(g, "maize").start();
+  for (;;) {
+    if (run.stage === "choose") {
+      const r = await run.choose(picks[run.step.id]);
+      if (r.error) throw new Error(r.error);
+    } else if (run.stage === "quiz") {
+      const idx = run.step.quiz.options.findIndex((o) => !!o.correct === (answers === "right"));
+      await run.answer(idx);
+    } else {
+      const r = await run.next();
+      if (r.done) return r.done;
+    }
+  }
+}
+
+test("maize: yields match the approved design (526 / 506 / 405)", () => {
+  eq(computeYield(maize, BEST, content), 526);
+  eq(computeYield(maize, { ...BEST, seed: "dry" }, content), 506);
+  eq(computeYield(maize, FREE, content), 405);
+});
+test("maize: every step has a free option", () => {
+  for (const s of maize.steps) ok(s.options.some((o) => !o.item), s.id);
+});
+test("maize: perfect run = 1,000 MP, +100 bonus, 2,300 coins, badge, Level 1", async () => {
+  const g = await newGame();
+  const r = await playMaize(g, BEST);
+  eq([r.produced, r.perfect, r.missionPoints, r.bonusPoints, r.coinsEarned], [526, true, 1000, 100, 2300]);
+  eq(r.newBadges, ["maize"]); eq(r.levelAfter.n, 1);
+  eq(g.state.coins, 500 - 300 + 2300, "start - seed + earned");
+  eq(g.state.production, { maize: 526 });
+});
+test("maize: free path completes (not perfect) with 0 coins spent", async () => {
+  const g = await newGame();
+  const r = await playMaize(g, FREE);
+  eq([r.produced, r.perfect, r.missionPoints], [405, false, 1000]);
+});
+test("maize: wrong quiz answers still complete, just not perfect", async () => {
+  const g = await newGame();
+  const r = await playMaize(g, BEST, "wrong");
+  eq([r.perfect, r.missionPoints, r.coinsEarned], [false, 1000, 2300 - 150 - 250]);
+});
+test("maize: playable from 0 coins using free options", async () => {
+  const g = await newGame();
+  await g.apply({ type: "task", delta: { coins: -500 } });
+  eq(g.state.coins, 0);
+  const run = await new MissionRun(g, "maize").start();
+  await run.next(); // no-op at choose stage
+  const r = await run.choose("compost");
+  ok(r.ok);
+  const g2 = await newGame();
+  await g2.apply({ type: "task", delta: { coins: -500 } });
+  const run2 = await new MissionRun(g2, "maize").start();
+  run2.s.stepIndex = 1;
+  eq((await run2.choose("better")).error, "not-enough-coins");
+  eq(g2.state.coins, 0);
+});
+test("maize: replay pays 25% coins, 0 MP, no new bonus", async () => {
+  const g = await newGame();
+  await playMaize(g, BEST);
+  const r = await playMaize(g, BEST);
+  eq([r.replay, r.missionPoints, r.bonusPoints, r.coinsEarned], [true, 0, 0, 577]);
+  eq(g.state.missionPoints, 1000);
+});
+test("maize: resuming mid-run never pays twice", async () => {
+  const store = memoryStore();
+  const g = new Game(content, store); await g.load();
+  await g.createPlayer({ nickname: "Tester", ageBand: "10-12", province: "lusaka" }, "p1");
+  const run = await new MissionRun(g, "maize").start();
+  await run.choose("compost");
+  const coins = g.state.coins;
+  // App closed and reopened:
+  const g2 = await new Game(content, store).load();
+  const run2 = await new MissionRun(g2, "maize").start();
+  eq([run2.s.stepIndex, run2.stage], [0, "result"]);
+  eq(await run2.choose("compost").then((r) => r.error), "wrong-stage");
+  eq(g2.state.coins, coins);
 });
 
 // ---------- runner ----------
