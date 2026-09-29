@@ -124,8 +124,13 @@ must happen before any player data leaves the device.
 - Test locally: `powershell -ExecutionPolicy Bypass -File scripts\serve.ps1`
   then open `http://localhost:8765/tests/` (engine tests) and `/` (game) at
   360px width.
-- The Claude desktop browser pane refuses service-worker registration, so
-  offline play must be checked in real Chrome or on a phone.
+- The Claude desktop browser pane refuses service-worker registration on the
+  local PowerShell server, but it works on the deployed https site — check
+  offline behaviour there. Preview deploy: https://preview--build-zambia.netlify.app
+  (Netlify site `build-zambia`, branch deploys on; production = `main`).
+  Phase 0 check 2026-09-30: SW `bz-v1` activated, all 32 precache files
+  cached, a reload served all 27 requests from the SW cache with zero from
+  the network, 24/24 engine tests pass live, IndexedDB save/read works.
 - Visual reference: mockup canvas https://claude.ai/artifact/6ewdMQxeW4ckLi7CN18kso
 - Fonts: Baloo 2 (variable, one file covers 700/800) + Atkinson Hyperlegible
   400/700, Latin subset, self-hosted in `fonts/` (~68 KB total, SIL OFL —
